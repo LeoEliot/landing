@@ -38,4 +38,10 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
       - name: Edit and commit
         run: |
-          ls 
+          cd apps/landing/overlays/prod
+          sed -i 's|newTag: .*|newTag: ${{ env.SHORT_SHA }}'
+          git add .
+          git config --local user.email "vakkfuder@gmail.com"
+          git config --local user.name "Auto Commit"
+          git commit -am "Update Image tag to ${{ env.SHORT_SHA }}"
+          git push -u origin main
