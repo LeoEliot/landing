@@ -34,7 +34,7 @@ jobs:
       - name: Ckecjout k8s app
         uses: actions/checkout@v6
         with:
-          repository: https://github.com/LeoEliot/kubernetes
+          repository: LeoEliot/kubernetes
           token: ${{ secrets.PAT_TOKEN }}
       - name: Edit and commit
         run: |
