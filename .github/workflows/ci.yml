@@ -39,7 +39,7 @@ jobs:
       - name: Edit and commit
         run: |
           cd apps/landing/overlays/prod
-          sed -i 's|newTag: .*|newTag: ${{ env.SHORT_SHA }}'
+          sed -i 's|newTag: .*|newTag: ${{ env.SHORT_SHA }}|g' kustomization.yaml
           git add .
           git config --local user.email "vakkfuder@gmail.com"
           git config --local user.name "Auto Commit"
