@@ -18,7 +18,15 @@ jobs:
           registry: registry.malefstorm.ru
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_USERPASSWORD }}
+
       - name: Shorten SHA
         run: echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_ENV
-      - name: Print short SHA
-        run: echo ${{ env.SHORT_SHA }}
+        
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            registry.malefstorm.ru/malefstudio/landing:${{ env.SHORT_SHA }}
+            registry.malefstorm.ru/malefstudio/landing:latest
